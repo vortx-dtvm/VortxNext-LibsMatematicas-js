@@ -1,14 +1,14 @@
 const { expect } = require('chai')
 const calculoPu = require('./FormulaPu')
 
-describe('Deve realizar o calulo de pu corretamente utilizando o javascript nativo', () => {
+describe('Deve realizar o calculo de pu corretamente utilizando o javascript nativo', () => {
 
     it('Deve calcular o PU', () => {
         // Massa
         let dik = 6.39;
-        let dp = 13;
+        let dp = 20;
         let porcentagem = 0.06;
-        let fatordiacumuladoantes = 1.00159340;
+        let fatordiacumuladoantes =1.00272534;
         let vne = 10000;
 
         // Comportamento
@@ -20,8 +20,8 @@ describe('Deve realizar o calulo de pu corretamente utilizando o javascript nati
             vne)
 
 
-        // Resultado experado
-        expect(puFinal).not.be.equal(544545)
+        // Resultado esperado
+        expect(puFinal).to.be.equal(10075.35750000)
     })
 
 })
