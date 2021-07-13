@@ -1,12 +1,9 @@
-function calculoPu(dik, porcentagem, dp, fatordiacumuladoantes, vne) {
+function calculoPu(mediaCdi, porcentagem, dp, fatorDiAcumulado, vne) {
 
-    const tdik = Math.pow(((dik / 100) + 1), (1 / 252)) - 1;
-
-    const fatordi = (1 + tdik);
-
+    const fatordi = calculoFatorDi(mediaCdi)
     const fatorspread = Math.pow((1 + porcentagem), (dp / 252));
 
-    const fatordiacumulado = fatordiacumuladoantes * fatordi;
+    const fatordiacumulado = fatorDiAcumulado * fatordi;
 
     const fatorjuros = fatordiacumulado * fatorspread;
 
@@ -14,4 +11,7 @@ function calculoPu(dik, porcentagem, dp, fatordiacumuladoantes, vne) {
     return pu
 }
 
-module.exports = calculoPu
+function calculoFatorDi(mediaCdi) {
+    return ((Math.pow(((mediaCdi / 100) + 1), (1 / 252))));
+}
+module.exports = { calculoPu, calculoFatorDi }
