@@ -1,8 +1,9 @@
 const { expect } = require('chai')
-const { calculoPu, calculoFatorDi } = require('./FormulaPu')
-const { mediasCdi, puEsperado } = require('./MassaDeTeste')
+const { calculoPuPos, calculoFatorDi, calculoPuPre } = require('./FormulaPu')
+const { mediasCdi, puEsperado } = require('./Massa de Teste/MassaDeTestePosFixado')
+const { puEsperadoPre } = require('./Massa de Teste/MassaDeTestePreFixado')
 
-describe('Deve realizar o calculo de pu corretamente utilizando o javascript nativo', () => {
+describe('Deve realizar o calculo de pu incorretamente de um ativo pós-fixado utilizando o javascript nativo', () => {
 
     it('Deve calcular o PU', () => {
         // Massa
@@ -13,7 +14,7 @@ describe('Deve realizar o calculo de pu corretamente utilizando o javascript nat
         let vne = 10000;
 
         // Comportamento
-        const puFinal = calculoPu(
+        const puFinal = calculoPuPos(
             mediaCdi,
             porcentagem,
             dp,
@@ -44,7 +45,7 @@ describe('Deve realizar o calculo de pu corretamente utilizando o javascript nat
         while (i < mediasCdi.length) {
             let dp = i+1;
 
-            const puFinal = calculoPu(
+            const puFinal = calculoPuPos(
                 mediaCdi,
                 porcentagem,
                 dp,
@@ -54,7 +55,32 @@ describe('Deve realizar o calculo de pu corretamente utilizando o javascript nat
             mediaCdi = mediasCdi[i];
             fatorDiAcumulado = fatorDiAcumulado * calculoFatorDi(mediaCdi);
             // Resultado esperado
-            //expect(puFinal).to.be.equal(puEsperado[i])
+            expect(puFinal).to.be.equal(puEsperado[i])
+            i++;
+        }
+    })
+})
+
+describe('Deve realizar o calculo de pu incorretamente de um ativo pré-fixado utilizando o javascript nativo', () => {
+
+    it('Deve calcular o PU em um periodo de um mes', () => {
+        // Massa
+        let porcentagem = 0.158;
+        //let fatordiacumuladoantes = 1.00000000;
+        let vne = 10017.47887;
+
+        // Comportamento
+
+        var i = 0;
+        
+        while (i < puEsperadoPre.length) {
+            let dp = i+1;
+
+            const puFinalPre = calculoPuPre(
+                vne, porcentagem,dp)
+            
+            // Resultado esperado
+            expect(puFinalPre).to.be.equal(puEsperadoPre[i])
             i++;
         }
     })
