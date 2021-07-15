@@ -1,7 +1,7 @@
 const { expect } = require('chai')
 const { calculoPuPos, calculoFatorDi, calculoPuPre } = require('./FormulaPu')
-const { mediasCdi, puEsperado } = require('./Massa de Teste/MassaDeTestePosFixado')
-const { puEsperadoPre } = require('./Massa de Teste/MassaDeTestePreFixado')
+const { mediasCdi, puEsperado } = require('./MassaDeTeste/MassaDeTestePosFixado')
+const { puEsperadoPre } = require('./MassaDeTeste/MassaDeTestePreFixado')
 
 describe('Deve realizar o calculo de pu incorretamente de um ativo pós-fixado utilizando o javascript nativo', () => {
 
@@ -55,13 +55,33 @@ describe('Deve realizar o calculo de pu incorretamente de um ativo pós-fixado u
             mediaCdi = mediasCdi[i];
             fatorDiAcumulado = fatorDiAcumulado * calculoFatorDi(mediaCdi);
             // Resultado esperado
-            expect(puFinal).to.be.equal(puEsperado[i])
+            expect(puFinal).to.not.be.equal(puEsperado[i])
             i++;
         }
     })
 })
 
 describe('Deve realizar o calculo de pu incorretamente de um ativo pré-fixado utilizando o javascript nativo', () => {
+
+    it('Deve calcular o PU', () => {
+        // Massa
+        let dp = 7;
+        let porcentagem = 0.158;
+        let vne = 1017.47887;
+
+        // Comportamento
+        const puFinal = calculoPuPre(
+            dp,
+            porcentagem,
+            vne)
+
+
+        // Resultado esperado
+        expect(puFinal.toFixed(12)).to.not.be.equal('10058.38180897000')
+        expect(puFinal.toFixed(12)).to.not.be.equal(10058.38180897000.toFixed(12))
+        expect(puFinal).to.not.be.equal(10058.38180897000)
+    })
+
 
     it('Deve calcular o PU em um periodo de um mes', () => {
         // Massa
@@ -80,7 +100,8 @@ describe('Deve realizar o calculo de pu incorretamente de um ativo pré-fixado u
                 vne, porcentagem,dp)
             
             // Resultado esperado
-            expect(puFinalPre).to.be.equal(puEsperadoPre[i])
+            expect(puFinalPre).to.not.be.equal(puEsperadoPre[i])
+            expect(puFinalPre.toFixed(12)).to.not.be.equal((puEsperadoPre[i]).toFixed(12))
             i++;
         }
     })
