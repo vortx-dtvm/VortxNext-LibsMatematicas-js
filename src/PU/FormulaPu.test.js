@@ -1,5 +1,7 @@
 const { expect } = require('chai')
-const { calculoPuPos, calculoFatorDi, calculoPuPre } = require('./FormulaPu')
+
+//const { calculoPuPos, calculoFatorDi, calculoPuPre } = require('./FormulaPu')
+const { calculoPuPos, calculoFatorDi, calculoPuPre } = require('./FormulaPuAsBig')
 const { mediasCdi, puEsperado } = require('./MassaDeTeste/MassaDeTestePosFixado')
 const { puEsperadoPre } = require('./MassaDeTeste/MassaDeTestePreFixado')
 
@@ -23,9 +25,9 @@ describe('Deve realizar o calculo de pu incorretamente de um ativo pós-fixado u
 
 
         // Resultado esperado
-        expect(puFinal.toFixed(12)).to.not.be.equal('10071.402932321400')
-        expect(puFinal.toFixed(12)).to.not.be.equal(10071.402932321400.toFixed(12))
-        expect(puFinal).to.not.be.equal(10071.402932321400)
+        expect(puFinal.toFixed(12)).to.be.equal('10071.402932321400')
+        expect(puFinal.toFixed(12)).to.be.equal(10071.402932321400.toFixed(12))
+        expect(puFinal).to.be.equal(10071.402932321400)
     })
 
     it('Deve calcular o PU em um periodo de um mes, utilizando o fator acumulado', () => {
@@ -55,7 +57,7 @@ describe('Deve realizar o calculo de pu incorretamente de um ativo pós-fixado u
             mediaCdi = mediasCdi[i];
             fatorDiAcumulado = fatorDiAcumulado * calculoFatorDi(mediaCdi);
             // Resultado esperado
-            expect(puFinal).to.not.be.equal(puEsperado[i])
+            expect(puFinal).to.be.equal(puEsperado[i])
             i++;
         }
     })
@@ -67,19 +69,19 @@ describe('Deve realizar o calculo de pu incorretamente de um ativo pré-fixado u
         // Massa
         let dp = 7;
         let porcentagem = 0.158;
-        let vne = 1017.47887;
+        let vne = 10017.47887;
 
         // Comportamento
         const puFinal = calculoPuPre(
-            dp,
+            vne,
             porcentagem,
-            vne)
+            dp)
 
 
         // Resultado esperado
-        expect(puFinal.toFixed(12)).to.not.be.equal('10058.38180897000')
-        expect(puFinal.toFixed(12)).to.not.be.equal(10058.38180897000.toFixed(12))
-        expect(puFinal).to.not.be.equal(10058.38180897000)
+        expect(puFinal.toFixed(12)).to.be.equal('10058.38180897000')
+        expect(puFinal.toFixed(12)).to.be.equal(10058.38180897000.toFixed(12))
+        expect(puFinal).to.be.equal(10058.38180897000)
     })
 
 
@@ -100,8 +102,8 @@ describe('Deve realizar o calculo de pu incorretamente de um ativo pré-fixado u
                 vne, porcentagem,dp)
             
             // Resultado esperado
-            expect(puFinalPre).to.not.be.equal(puEsperadoPre[i])
-            expect(puFinalPre.toFixed(12)).to.not.be.equal((puEsperadoPre[i]).toFixed(12))
+            expect(puFinalPre).to.be.equal(puEsperadoPre[i])
+            expect(puFinalPre.toFixed(12)).to.be.equal((puEsperadoPre[i]).toFixed(12))
             i++;
         }
     })
