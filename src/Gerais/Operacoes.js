@@ -1,7 +1,7 @@
 
 function calculaGaussiana(x, mi, sigma){
     const e = 2.71828182845;
-    return y = (1/(sqrt(2*Math.PI)*sigma))* Math.pow(e, ((-0.5* Math.pow(((x-mi)/(sigma)),2))));
+    return y = (1/((Math.sqrt(2*Math.PI))*sigma))* Math.pow(e, ((-0.5* Math.pow(((x-mi)/(sigma)),2))));
 }
 
 function calculaSnellDescartes(n1,n2,ang1){
@@ -13,7 +13,20 @@ function calculaLog(base, x){
     const logBase = Math.log(base);
     return a/base;
 }
-//4. calcula as raízes de uma eq de 2 grau por bhaskara
-//5. calculo juros simples
+
+function calculaBhaskara(coef1, coef2, coef3){
+    const delta = Math.pow(coef2,2) - (4*coef1*coef3);
+    const raiz1 = (-coef2-Math.sqrt(delta))/(2*coef1);
+    const raiz2 = (-coef2+Math.sqrt(delta))/(2*coef1);
+    return raiz1, raiz2
+}
+
+function calculoJurosSimples(capital, taxa, n_periodos){
+    return capital*taxa*n_periodos
+}
+
 //6. calculo juros compostos
 //7. calculo amortização
+//8. calculo desvio padrão
+// quebrar em mais linhas
+// implementa as libs
