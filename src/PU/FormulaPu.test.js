@@ -1,7 +1,10 @@
 const { expect } = require('chai')
 
 //const { calculoPuPos, calculoFatorDi, calculoPuPre } = require('./FormulaPu')
-const { calculoPuPos, calculoFatorDi, calculoPuPre } = require('./FormulaPuAsBig')
+const { calculoPuPos, calculoFatorDi, calculoPuPre } = require('./FormulaPuBig')
+//const { calculoPuPos, calculoFatorDi, calculoPuPre } = require('./FormulaPuMath')
+//const { calculoPuPos, calculoFatorDi, calculoPuPre } = require('./FormulaPuBigNumber')
+
 const { mediasCdi, puEsperado } = require('./MassaDeTeste/MassaDeTestePosFixado')
 const { puEsperadoPre } = require('./MassaDeTeste/MassaDeTestePreFixado')
 

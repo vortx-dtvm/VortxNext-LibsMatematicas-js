@@ -11,7 +11,10 @@
   "license": "ISC",
   "dependencies": {
     "as-big": "^0.1.4",
+    "big.js": "^6.1.1",
+    "bignumber.js": "^9.0.1",
     "chai": "^4.3.4",
+    "mathjs": "^9.4.4",
     "mocha": "^9.0.2"
   }
 }
