@@ -1,11 +1,11 @@
 const { expect } = require('chai')
-const { calculoPuPos, calculoFatorDi, calculoPuPre } = require('./FormulaPu')
 
+const { calculoPuPos, calculoFatorDi, calculoPuPre } = require('./FormulaPuBig')
 const { mediasCdi, puEsperado } = require('./MassaDeTeste/MassaDeTestePosFixado')
 const { puEsperadoPre } = require('./MassaDeTeste/MassaDeTestePreFixado')
 
-describe('Deve realizar o calculo de pu incorretamente de um ativo pós-fixado utilizando o javascript nativo', () => {
-    
+describe('Deve realizar o calculo de pu incorretamente de um ativo pós-fixado utilizando a lib Big', () => {
+
     it('Deve calcular o PU', () => {
         // Massa
         let mediaCdi = 4.15;
@@ -62,7 +62,7 @@ describe('Deve realizar o calculo de pu incorretamente de um ativo pós-fixado u
     })
 })
 
-describe('Deve realizar o calculo de pu incorretamente de um ativo pré-fixado utilizando o javascript nativo', () => {
+describe('Deve realizar o calculo de pu incorretamente de um ativo pré-fixado utilizando a lib Big', () => {
 
     it('Deve calcular o PU', () => {
         // Massa
