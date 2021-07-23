@@ -2,20 +2,20 @@ const BigNumber = require('bignumber.js');
 
 function calculoValorCota(ativos, passivos, numeroDeCotas) {
 
-    const ativosB = new BigNumber(ativos);
-    const passivosB = new BigNumber(passivos);
+    const ativosB = ativos.map(ativo => new BigNumber(ativo));
+    const passivosB = passivos.map(passivos => new BigNumber(passivos));
     const numeroDeCotasB = new BigNumber(numeroDeCotas);
 
     const totalAtivos = calculoAtivo(ativosB);
     const totalPassivos = calculoPassivo(passivosB);
-    const valorDaCota = (totalAtivos.minus(totalPassivos)).dividedBy(numeroDeCotasB);
+    const valorDaCota = new BigNumber(totalAtivos.minus(totalPassivos)).dividedBy(numeroDeCotasB);
     return valorDaCota
 }
 
 function calculoAtivo(ativosB) {
     let totalAt = new BigNumber(0);
     ativosB.forEach(ativosB => {
-        totalAt += ativosB;
+        totalAt = new BigNumber(totalAt.plus(ativosB));
     });
     return totalAt
 }
@@ -23,7 +23,7 @@ function calculoAtivo(ativosB) {
 function calculoPassivo(passivosB) {
     let totalPa = new BigNumber(0);
     passivosB.forEach(passivosB => {
-        totalPa += passivosB;
+        totalPa = new BigNumber(totalPa.plus(passivosB));
     });
     return totalPa
 }

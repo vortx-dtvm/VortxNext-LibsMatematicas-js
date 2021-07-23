@@ -1,17 +1,25 @@
 
-function calculaGaussiana(x, mi, sigma){
+function calculaGaussiana(x, media, desvioPadrao){
     const e = 2.71828182845;
-    return y = (1/((Math.sqrt(2*Math.PI))*sigma))* Math.pow(e, ((-0.5* Math.pow(((x-mi)/(sigma)),2))));
+    const distribuicao = Math.pow(((x-media)/(desvioPadrao)),2);
+    const eulerElevado = Math.pow(e, ((-0.5* distribuicao)));
+    const desvio = (1/(Math.sqrt(2*Math.PI))*desvioPadrao)
+    return eulerElevado * desvio
 }
 
 function calculaSnellDescartes(n1,n2,ang1){
-    return (Math.asin((n1 * (Math.sin(ang1*Math.PI/180)))/n2))*180/Math.PI
+    const conversaoRadAng1 = (ang1*Math.PI/180);
+    const senoAng1 = Math.sin(conversaoRadAng1);
+    const indiceRefracao = n1 * senoAng1;
+    const ang2  = indiceRefracao/n2;
+    const arcosenoAng2 = Math.asin(ang2);
+    return arcosenoAng2*180/Math.PI
 }
 
 function calculaLog(base, x){
     const logX = Math.log(x);
     const logBase = Math.log(base);
-    return a/base;
+    return logX/logBase;
 }
 
 function calculaBhaskara(coef1, coef2, coef3){
@@ -21,12 +29,26 @@ function calculaBhaskara(coef1, coef2, coef3){
     return raiz1, raiz2
 }
 
-function calculoJurosSimples(capital, taxa, n_periodos){
-    return capital*taxa*n_periodos
+function calculoJurosSimples(capital, taxaJuros, numeroPeriodos){
+    return capital*taxaJuros*numeroPeriodos
 }
 
-//6. calculo juros compostos
-//7. calculo amortização
-//8. calculo desvio padrão
-// quebrar em mais linhas
-// implementa as libs
+function calculoJurosCompostos(capital, taxaJuros, numeroPeriodos){
+    const taxadeJuros = (1 + taxaJuros);
+    const taxaNoPeriodo = Math.pow(taxadeJuros, numeroPeriodos);
+    return capital*taxaNoPeriodo
+}
+
+function calculoAmortizacao(capitalInicial, taxaJuros, numeroPeriodos){
+    const taxaNoPeriodo = Math.pow((1+taxaJuros), numeroPeriodos);
+    const denominador = 1 - (1/taxaNoPeriodo);
+    const capitaleTaxa = capitalInicial*taxaJuros;
+    return capitaleTaxa/denominador
+}
+
+function desvioPadrao(valorIndividual, mediaDosValores, numeroDeValores){
+    const diferencaPadrao = Math.pow((valorIndividual-mediaDosValores),2);
+    const variancia = diferencaPadrao/numeroDeValores;
+    const desvioPadrao = Math.sqrt(variancia,2);
+    return desvioPadrao
+}

@@ -1,17 +1,17 @@
-const { substract, add, divide, pow } = require('mathjs');
+const { subtract, add, divide } = require('mathjs');
 
 function calculoValorCota(ativos, passivos, numeroDeCotas) {
 
     const totalAtivos = calculoAtivo(ativos);
     const totalPassivos = calculoPassivo(passivos);
-    const valorDaCota = divide((substract(totalAtivos, totalPassivos)), (numeroDeCotas));
+    const valorDaCota = divide((subtract(totalAtivos, totalPassivos)), (numeroDeCotas));
     return valorDaCota
 }
 
 function calculoAtivo(ativos) {
     let totalAt = 0
-    ativos.forEach(ativosB => {
-        totalAt += ativosB;
+    ativos.forEach(ativos => {
+        totalAt = add(ativos, totalAt);
     });
     return totalAt
 }
@@ -19,7 +19,7 @@ function calculoAtivo(ativos) {
 function calculoPassivo(passivos) {
     let totalPa = 0
     passivos.forEach(passivos => {
-        totalPa += passivos;
+        totalPa = add(passivos, totalPa);
     });
     return totalPa
 }

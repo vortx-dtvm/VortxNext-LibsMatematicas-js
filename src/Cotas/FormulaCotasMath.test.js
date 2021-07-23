@@ -1,9 +1,9 @@
 const { expect } = require('chai')
-const { calculoValorCota} = require('./FormulaCotas')
+const { calculoValorCota} = require('./FormulaCotasMath')
 const MassaDeTesteCotas = require('./MassaDeTeste/MassaDeTesteCotas')
 
 
-describe('Deve realizar o calculo de cotas utilizando o javascript nativo', () => {
+describe('Deve realizar o calculo de cotas utilizando a lib Math', () => {
 
     it.only('Deve calcular o valor da cota, utilizando varios fundos', () => {
         // Comportamento

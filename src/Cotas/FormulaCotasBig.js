@@ -2,29 +2,29 @@ const Big = require('big.js');
 
 function calculoValorCota(ativos, passivos, numeroDeCotas) {
 
-    const ativosB = new Big(ativos);
-    const passivosB = new Big(passivos);
+    const ativosB = ativos.map(ativo => new Big(ativo));
+    const passivosB = passivos.map(passivos => new Big(passivos));
     const numeroDeCotasB = new Big(numeroDeCotas);
 
     const totalAtivos = calculoAtivo(ativosB);
     const totalPassivos = calculoPassivo(passivosB);
     const valorDaCota = (totalAtivos.minus(totalPassivos)).div(numeroDeCotasB);
-    return valorDaCota
+    return new Big(valorDaCota.toPrecision());
 }
 
 function calculoAtivo(ativosB) {
     let totalAt = new Big(0);
     ativosB.forEach(ativosB => {
-        totalAt += ativosB;
+        totalAt = totalAt.plus(ativosB);
     });
-    return totalAt
+    return new Big(totalAt.toPrecision());
 }
 
 function calculoPassivo(passivosB) {
     let totalPa = new Big(0);
     passivosB.forEach(passivosB => {
-        totalPa += passivosB;
+        totalPa = totalPa.plus(passivosB);
     });
-    return totalPa
+    return new Big(totalPa.toPrecision());
 }
 module.exports = { calculoValorCota, calculoAtivo, calculoPassivo }
