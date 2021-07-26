@@ -3,8 +3,8 @@ const { multiply, add, divide, pow, subtract} = require('mathjs');
 function calculaGaussiana(x, media, desvioPadrao) {
     const e = 2.71828182845;
     const distribuicao = pow((divide(subtract(x,media),(desvioPadrao))), 2);
-    const eulerElevado = pow(e, (multiply(-0.5,distribuicao)));
-    const desvio = divide(1,multiply((Math.sqrt(multiply(2,Math.PI))),desvioPadrao))
+    const eulerElevado = pow(e,(multiply(-0.5, distribuicao)));
+    const desvio = divide(1, (multiply((Math.sqrt(multiply(2, Math.PI))), desvioPadrao)))
     return multiply(eulerElevado,desvio)
 }
 

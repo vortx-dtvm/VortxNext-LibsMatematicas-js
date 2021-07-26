@@ -1,9 +1,9 @@
 const { expect } = require('chai')
-const { calculoValorCota} = require('./FormulaCotasBigNumber')
+const { calculoValorCota} = require('./FormulaCotasDecimal')
 const MassaDeTesteCotas = require('./MassaDeTeste/MassaDeTesteCotas')
 
 
-describe('Deve realizar o calculo de cotas utilizando a lib BigNumber', () => {
+describe('Deve realizar o calculo de cotas utilizando a lib Decimal', () => {
 
     it('Deve calcular o valor da cota, utilizando varios fundos', () => {
         // Comportamento

@@ -1,10 +1,10 @@
 const { expect } = require('chai')
 
-const { calculoPuPos, calculoFatorDi, calculoPuPre } = require('./FormulaPuBigNumber')
+const { calculoPuPos, calculoFatorDi, calculoPuPre } = require('./FormulaPuDecimal')
 const { mediasCdi, puEsperado } = require('./MassaDeTeste/MassaDeTestePosFixado')
 const { puEsperadoPre } = require('./MassaDeTeste/MassaDeTestePreFixado')
 
-describe('Deve realizar o calculo de pu incorretamente de um ativo pós-fixado utilizando a lib BigNumber', () => {
+describe('Deve realizar o calculo de pu incorretamente de um ativo pós-fixado utilizando a lib Decimal', () => {
 
     it('Deve calcular o PU', () => {
         // Massa
@@ -62,7 +62,7 @@ describe('Deve realizar o calculo de pu incorretamente de um ativo pós-fixado u
     })
 })
 
-describe('Deve realizar o calculo de pu incorretamente de um ativo pré-fixado utilizando a lib BigNumber', () => {
+describe('Deve realizar o calculo de pu incorretamente de um ativo pré-fixado utilizando a lib Decimal', () => {
 
     it('Deve calcular o PU', () => {
         // Massa

@@ -1,8 +1,8 @@
 const massaDeTeste = {
     Gaussiana: [
-        { x: 1020.506049, media: 1050.395710, desvioPadrao: 80.433292, finalEsperado: 29.947425331}, 
-        { x: 549.554, media: 606.990, desvioPadrao: 23.211, finalEsperado: 0.4334720679},
-        { x: 2033.80889254, media: 2322.12993827, desvioPadrao: 100.21199866, finalEsperado:0.637287420}],
+        { inicial: 1020.506049, mediagauss: 1050.395710, desvioPadraogauss: 80.433292, finalEsperado: 29.947425331}, 
+        { inicial: 549.554, mediagauss: 606.990, desvioPadraogauss: 23.211, finalEsperado: 0.4334720679},
+        { inicial: 2033.80889254, mediagauss: 2322.12993827, desvioPadraogauss: 100.21199866, finalEsperado:0.637287420}],
     SnellDescartes: [
         { n1: 2.230919, n2: 4.292914, ang1: 62, finalEsperado: 27.31263915},
         { n1: 1.285, n2: 2.288, ang1: 33.3, finalEsperado: 18.2674608},

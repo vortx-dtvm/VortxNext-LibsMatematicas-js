@@ -9,8 +9,8 @@ function calculaGaussiana(x, media, desvioPadrao) {
     const e = new Big(2.71828182845);
     const distribuicao = new Big(Math.pow(((xB.minus(mediaB)).div(desvioPadraoB)), new Big(2)));
     const eulerElevado = new Big(Math.pow(e, ((new Big(-0.5).times(distribuicao)))));
-    const desvio = (new Big(1).div(new Big(2).times(Math.PI)).sqrt().times(desvioPadraoB));
-    return eulerElevado.times(desvio)
+    const desvio = (new Big(1).div((new Big(2).times(Math.PI)).sqrt().times(desvioPadraoB)));
+    return Number(eulerElevado.times(desvio))
 }
 
 function calculaSnellDescartes(n1, n2, ang1) {
