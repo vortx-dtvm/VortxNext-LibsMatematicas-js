@@ -17,26 +17,20 @@ describe('Deve realizar o calculo do PU PÔS FIXADO', () => {
         let ultimoTeste
         const historicoTempoExecucao = []
         beforeEach(() => {
-            start = performance.now()
+            start = performance.now()            
         })
 
         libs.map(implementacao => {
 
             return it(`Deve realizar benchmark de tempo do calculo de PU na lib ${implementacao.nome}`, () => {
                 ultimoTeste = implementacao.nome
-                let mediaCdi = 4.15
-                let dp = 36
-                let porcentagem = 0.06
-                let fatorDiAcumuladoAnterior = 1.005317432437760000
-                let vne = 10006
 
-                // Comportamento
                 const puFinal = implementacao.lib.calculoPuPos(
-                    mediaCdi,
-                    porcentagem,
-                    dp,
-                    fatorDiAcumuladoAnterior,
-                    vne)
+                    4.15,
+                    0.06,
+                    36,
+                    1.005317432437760000,
+                    10006)
 
                 expect(puFinal).to.be.not.null
                 expect(puFinal).to.be.not.undefined
@@ -130,8 +124,6 @@ describe('Deve realizar o calculo do PU PÔS FIXADO', () => {
 
 describe('Deve realizar o calculo do PU PRE FIXADO', () => {
 
-    const { mediasCdi } = require('./MassaDeTeste/MassaDeTestePreFixado')
-
     describe('Deve realizar o calculo simples de PU', () => {
         let start
         let ultimoTeste
@@ -145,7 +137,10 @@ describe('Deve realizar o calculo do PU PRE FIXADO', () => {
             return it(`Deve realizar benchmark de tempo do calculo de PU na lib ${implementacao.nome}`, () => {
                 ultimoTeste = implementacao.nome
 
-
+                const puFinal = implementacao.lib.calculoPuPre(
+                    10017.47887,
+                    0.158,
+                    7)
 
                 expect(puFinal).to.be.not.null
                 expect(puFinal).to.be.not.undefined
@@ -186,34 +181,18 @@ describe('Deve realizar o calculo do PU PRE FIXADO', () => {
             return it(`Deve realizar benchmark de tempo do calculo de PU na lib ${implementacao.nome}`, () => {
                 ultimoTeste = implementacao.nome
 
-                let porcentagem = 0.06;
-                //let fatordiacumuladoantes = 1.00000000;
-                let vne = 10000;
+                let porcentagem = 0.158;
+                let vne = 10017.47887;
 
-                // Comportamento
-
-                let fatorDiAcumuladoAnterior = 1.00000000;
-                let mediaCdiDIA = 1.00000000;
-
-
-                mediasCdi.forEach((mediaCdi, i) => {
-                    let dp = i + 1;
-
-                    const puFinal = implementacao.lib.calculoPuPos(
-                        mediaCdiDIA,
-                        porcentagem,
-                        dp,
-                        fatorDiAcumuladoAnterior,
-                        vne)
-
-                    mediaCdiDIA = mediaCdi;
-                    fatorDiAcumuladoAnterior = fatorDiAcumuladoAnterior * implementacao.lib.calculoFatorDi(mediaCdiDIA);
+                for (i = 0; i < 10; i++) {
+                    const puFinal = implementacao.lib.calculoPuPre(vne, porcentagem, i + 1)
 
                     expect(puFinal).to.be.not.null
                     expect(puFinal).to.be.not.undefined
-                })
+                }
             })
         })
+
         afterEach(() => {
             const end = performance.now()
             const tempoExecucao = end - start

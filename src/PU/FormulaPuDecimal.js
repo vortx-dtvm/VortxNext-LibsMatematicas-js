@@ -34,8 +34,9 @@ function calculoFatorSpread(porcentagemB, dpB) {
     return new Decimal(um.plus(porcentagemB)).pow(divisaoDp);
 }
 function calculoPuPre(vneB, porcentagemB, dpB) {
+    dpB = new Decimal(dpB)
     const doisCincoDois = new Decimal(252);
-    let divisaoFinal = new Decimal(dpB.dividedBy(doisCincoDois));
+    let divisaoFinal = dpB.dividedBy(doisCincoDois);
     const pu = new Decimal(vneB).times((new Decimal(um.plus(porcentagemB)).pow(divisaoFinal)));
     return Number(pu)
 }
