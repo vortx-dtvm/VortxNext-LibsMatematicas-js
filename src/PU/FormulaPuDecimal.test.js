@@ -3,23 +3,24 @@ const { expect } = require('chai')
 const { calculoPuPos, calculoFatorDi, calculoPuPre } = require('./FormulaPuDecimal')
 const { mediasCdi, puEsperado } = require('./MassaDeTeste/MassaDeTestePosFixado')
 const { puEsperadoPre } = require('./MassaDeTeste/MassaDeTestePreFixado')
+const Decimal = require('decimal.js');
 
 describe('Deve realizar o calculo de pu incorretamente de um ativo pós-fixado utilizando a lib Decimal', () => {
 
     it('Deve calcular o PU', () => {
         // Massa
         let mediaCdi = 4.15;
-        let dp = 19;
+        let dp = 36;
         let porcentagem = 0.06;
-        let fatorDiAcumulado = 1.002563554918;
-        let vne = 10000;
+        let fatorDiAcumuladoAnterior = 1.005317432437760000;
+        let vne = 10006;
 
         // Comportamento
         const puFinal = calculoPuPos(
             mediaCdi,
             porcentagem,
             dp,
-            fatorDiAcumulado,
+            fatorDiAcumuladoAnterior,
             vne)
 
 
@@ -54,7 +55,7 @@ describe('Deve realizar o calculo de pu incorretamente de um ativo pós-fixado u
                 vne)
 
             mediaCdi = mediasCdi[i];
-            fatorDiAcumulado = fatorDiAcumulado * calculoFatorDi(mediaCdi);
+            fatorDiAcumulado = fatorDiAcumulado * calculoFatorDi(new Decimal(mediaCdi));
             // Resultado esperado
             expect(puFinal).to.be.equal(puEsperado[i])
             i++;

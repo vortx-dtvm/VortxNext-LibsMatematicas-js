@@ -15,13 +15,13 @@ describe('Deve realizar o calculo da curva Gaussiana utilizando  a lib Big', () 
         const resultado = Operacoes.calculaGaussiana(x, media, desvioPadrao)
         
         //Resultado esperado
-        expect(resultado).to.be.equal(0.000033780275421913600)
+        expect(resultado.toFixed(16)).to.be.equal('0.0000337802754219')
         })
 
         it('Deve calcular o valor da curva, utilizando varios valores nos parâmetros', () => {
         MassaDeTeste.Gaussiana.forEach(({ x, media, desvioPadrao, finalEsperado }) => {
             const resultado = Operacoes.calculaGaussiana(x, media, desvioPadrao)
-            expect(resultado).to.be.equal(finalEsperado)
+            expect(resultado.toFixed(16)).to.be.equal(finalEsperado.toFixed(16))
         })
     })
 })
@@ -44,7 +44,7 @@ describe('Deve realizar a lei Snell Descartes utilizando a lib Big', () => {
     it('Deve calcular o angulo 2, utilizando varios valores nos parâmetros', () => {
         MassaDeTeste.SnellDescartes.forEach(({ n1, n2, ang1, finalEsperado }) => {
             const resultado = Operacoes.calculaSnellDescartes(n1, n2, ang1, finalEsperado)
-            expect(resultado).to.be.equal(finalEsperado)
+            expect(resultado.toFixed(7)).to.be.equal(finalEsperado.toFixed(7))
         })
     })
 })
@@ -60,13 +60,13 @@ describe('Deve realizar o calculo da divisão de logs utilizando a lib Big', () 
         const resultado = Operacoes.calculaLog(x, y)
         
         //Resultado esperado
-        expect(resultado).to.be.equal(1.1166934448159)
+        expect(resultado.toFixed(13)).to.be.equal('1.1166934448159')
         })
 
     it('Deve calcular o resultado da divisão, utilizando varios valores nos parâmetros', () => {
         MassaDeTeste.Log.forEach(({ x, y, finalEsperado }) => {
             const resultado = Operacoes.calculaLog(x, y, finalEsperado)
-            expect(resultado).to.be.equal(finalEsperado)
+            expect(resultado.toFixed(9)).to.be.equal(finalEsperado.toFixed(9))
         })
     })
 })
@@ -83,13 +83,13 @@ describe('Deve realizar o calculo de Bhaskara utilizando a lib Big', () => {
         const resultado = Operacoes.calculaBhaskara(coef1, coef2, coef3)
         
         //Resultado esperado
-        expect(resultado).to.be.equal(196.58986921924600)
+        expect(resultado.toFixed(10)).to.be.equal('196.5898692192')
         })
 
     it('Deve calcular o resultado da divisão das duas raízes, utilizando varios valores nos parâmetros', () => {
         MassaDeTeste.Bhaskara.forEach(({ coef1, coef2, coef3, finalEsperado }) => {
             const resultado = Operacoes.calculaBhaskara(coef1, coef2, coef3, finalEsperado)
-            expect(resultado).to.be.equal(finalEsperado)
+            expect(resultado.toFixed(9)).to.be.equal(finalEsperado.toFixed(9))
         })
     })
 })
@@ -112,7 +112,7 @@ describe('Deve realizar o calculo de Juros Simples utilizando a lib Big', () => 
     it('Deve calcular do juros, utilizando varios valores nos parâmetros', () => {
         MassaDeTeste.JurosSimples.forEach(({ capital, taxaJuros, numeroPeriodo, finalEsperado }) => {
             const resultado = Operacoes.calculoJurosSimples(capital, taxaJuros, numeroPeriodo, finalEsperado)
-            expect(resultado).to.be.equal(finalEsperado)
+            expect(resultado.toFixed(7)).to.be.equal(finalEsperado.toFixed(7))
         })
     })
 })
@@ -129,13 +129,13 @@ describe('Deve realizar o calculo de Juros Compostos utilizando a lib Big', () =
         const resultado = Operacoes.calculoJurosCompostos(capital, taxaJuros, numeroPeriodo)
         
         //Resultado esperado
-        expect(resultado).to.be.equal(366984.902338320)
+        expect(resultado.toFixed(8)).to.be.equal('366984.90233832')
         })
 
     it('Deve calcular do juros, utilizando varios valores nos parâmetros', () => {
         MassaDeTeste.JurosCompostos.forEach(({ capital, taxaJuros, numeroPeriodos, finalEsperado }) => {
             const resultado = Operacoes.calculoJurosCompostos(capital, taxaJuros, numeroPeriodos, finalEsperado)
-            expect(resultado).to.be.equal(finalEsperado)
+            expect(resultado.toFixed(10)).to.be.equal(finalEsperado.toFixed(10))
         })
     })
 })
@@ -152,13 +152,13 @@ describe('Deve realizar o calculo de Amortização utilizando a lib Big', () => 
         const resultado = Operacoes.calculoAmortizacao(capitalInicial, taxaJuros, numeroPeriodo)
         
         //Resultado esperado
-        expect(resultado).to.be.equal(721.80689825232300)
+        expect(resultado.toFixed(12)).to.be.equal(721.80689825232300.toFixed(12))
         })
 
     it('Deve calcular da prestação, utilizando varios valores nos parâmetros', () => {
         MassaDeTeste.Amortizacao.forEach(({ capitalInicial, taxaJuros, numeroPeriodo, finalEsperado }) => {
             const resultado = Operacoes.calculoAmortizacao(capitalInicial, taxaJuros, numeroPeriodo, finalEsperado)
-            expect(resultado).to.be.equal(finalEsperado)
+            expect(resultado.toFixed(11)).to.be.equal(finalEsperado.toFixed(11))
         })
     })
 })
@@ -181,7 +181,7 @@ describe('Deve realizar o calculo de Desvio Padrão utilizando a lib Big', () =>
     it('Deve calcular do desvio, utilizando varios valores nos parâmetros', () => {
         MassaDeTeste.DesvioPadrao.forEach(({ valorIndividual, mediaDosValores, numeroDeValores, finalEsperado }) => {
             const resultado = Operacoes.desvioPadrao(valorIndividual, mediaDosValores, numeroDeValores, finalEsperado)
-            expect(resultado).to.be.equal(finalEsperado)
+            expect(resultado.toFixed(8)).to.be.equal(finalEsperado.toFixed(8))
         })
     })
 })

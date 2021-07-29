@@ -101,8 +101,7 @@ describe('Deve realizar o calculo de pu incorretamente de um ativo pré-fixado u
                 vne, porcentagem, dp)
 
             // Resultado esperado
-            expect(puFinalPre).to.be.equal(puEsperadoPre[i])
-            expect(puFinalPre.toFixed(12)).to.be.equal((puEsperadoPre[i]).toFixed(12))
+            expect(puFinalPre.toFixed(3)).to.be.equal(puEsperadoPre[i].toFixed(3));
             i++;
         }
     })

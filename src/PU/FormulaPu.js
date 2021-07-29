@@ -1,18 +1,20 @@
+const { floorFigure } = require("../Util")
+function calculoPuPos(mediaCdi, porcentagem, dp, fatorDiAcumuladoAnterior, vne) {
 
-function calculoPuPos(mediaCdi, porcentagem, dp, fatorDiAcumulado, vne) {
-
-    const fatordi = calculoFatorDi(mediaCdi)
+    const fatordiToFixed = (calculoFatorDi(mediaCdi).toFixed(14));
+    const fatorditesteFloorFigure = floorFigure(calculoFatorDi(mediaCdi),14);
     const fatorspread = calculoFatorSpread(porcentagem, dp);
 
-    const fatordiacumulado = (fatorDiAcumulado * fatordi).toFixed(14);
-    const fatorjuros = floorFigure((fatordiacumulado * fatorspread),14);
+    const fatordiacumulado = (fatorDiAcumuladoAnterior * fatordiToFixed).toFixed(14);
+    const fatorjurosFloorFigure = floorFigure((fatordiacumulado * fatorspread),14);
+    const fatorjurostesteToFixed = ((fatordiacumulado * fatorspread).toFixed(14));
 
-    const pu = vne * fatorjuros;
-    return pu
+    const pu = vne * fatorjurostesteToFixed;
+    return pu;
 }
 
 function calculoFatorDi(mediaCdi) {
-    return ((Math.pow(((mediaCdi / 100) + 1), (1 / 252)))).toFixed(14);
+    return((Math.pow(((mediaCdi / 100) + 1), (1 / 252))));
 }
 
 function calculoFatorSpread(porcentagem, dp){

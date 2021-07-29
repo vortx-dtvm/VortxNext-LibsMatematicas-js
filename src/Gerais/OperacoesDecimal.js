@@ -21,10 +21,10 @@ function calculaSnellDescartes(n1, n2, ang1) {
     const ang1B = new Decimal(ang1);
 
     const conversaoRadAng1 = (ang1B.times(Math.PI)).dividedBy(new Decimal(180));
-    const senoAng1 = sin(conversaoRadAng1);
+    const senoAng1 = Math.sin(conversaoRadAng1);
     const indiceRefracao = n1B.times(senoAng1);
     const ang2 = indiceRefracao.dividedBy(n2B);
-    const arcosenoAng2 = asin(ang2);
+    const arcosenoAng2 = Math.asin(ang2);
     return Number(new Decimal(arcosenoAng2).times(new Decimal(180).dividedBy(Math.PI)))
 }
 

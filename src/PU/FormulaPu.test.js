@@ -9,24 +9,22 @@ describe('Deve realizar o calculo de pu incorretamente de um ativo pós-fixado u
     it('Deve calcular o PU', () => {
         // Massa
         let mediaCdi = 4.15;
-        let dp = 19;
+        let dp = 36;
         let porcentagem = 0.06;
-        let fatorDiAcumulado = 1.00256355491838;
-        let vne = 10000;
+        let fatorDiAcumuladoAnterior = 1.005317432437760000;
+        let vne = 10006;
 
         // Comportamento
         const puFinal = calculoPuPos(
             mediaCdi,
             porcentagem,
             dp,
-            fatorDiAcumulado,
+            fatorDiAcumuladoAnterior,
             vne)
 
 
         // Resultado esperado
-        expect(puFinal.toFixed(12)).to.be.equal('10071.402935745300')
-        expect(puFinal.toFixed(12)).to.be.equal(10071.402935745300.toFixed(12))
-        expect(puFinal).to.be.equal(10071.402935745300)
+        expect(puFinal).to.be.equal(10087.230802125500)
     })
 
     it('Deve calcular o PU em um periodo de um mes, utilizando o fator acumulado', () => {
@@ -40,7 +38,7 @@ describe('Deve realizar o calculo de pu incorretamente de um ativo pós-fixado u
         // Comportamento
 
         var i = 0;
-        let fatorDiAcumulado = 1.00000000;
+        let fatorDiAcumuladoAnterior = 1.00000000;
         let mediaCdi = 1.00000000;
 
         while (i < mediasCdi.length) {
@@ -50,11 +48,11 @@ describe('Deve realizar o calculo de pu incorretamente de um ativo pós-fixado u
                 mediaCdi,
                 porcentagem,
                 dp,
-                fatorDiAcumulado,
+                fatorDiAcumuladoAnterior,
                 vne)
 
             mediaCdi = mediasCdi[i];
-            fatorDiAcumulado = fatorDiAcumulado * calculoFatorDi(mediaCdi);
+            fatorDiAcumuladoAnterior = fatorDiAcumuladoAnterior * calculoFatorDi(mediaCdi);
             // Resultado esperado
             expect(puFinal).to.be.equal(puEsperado[i])
             i++;
@@ -78,8 +76,6 @@ describe('Deve realizar o calculo de pu incorretamente de um ativo pré-fixado u
 
 
         // Resultado esperado
-        expect(puFinal.toFixed(12)).to.be.equal('10058.38180897000')
-        expect(puFinal.toFixed(12)).to.be.equal(10058.38180897000.toFixed(12))
         expect(puFinal).to.be.equal(10058.38180897000)
     })
 
@@ -101,8 +97,7 @@ describe('Deve realizar o calculo de pu incorretamente de um ativo pré-fixado u
                 vne, porcentagem, dp)
 
             // Resultado esperado
-            expect(puFinalPre).to.be.equal(puEsperadoPre[i])
-            expect(puFinalPre.toFixed(12)).to.be.equal((puEsperadoPre[i]).toFixed(12))
+            expect(puFinalPre.toFixed(3)).to.be.equal(puEsperadoPre[i].toFixed(3));
             i++;
         }
     })

@@ -1,4 +1,6 @@
 const Big = require('big.js');
+const { floorFigure } = require("../Util")
+const pi = new Big(3.14159265359);
 
 function calculaGaussiana(x, media, desvioPadrao) {
 
@@ -9,7 +11,7 @@ function calculaGaussiana(x, media, desvioPadrao) {
     const e = new Big(2.71828182845);
     const distribuicao = new Big(Math.pow(((xB.minus(mediaB)).div(desvioPadraoB)), new Big(2)));
     const eulerElevado = new Big(Math.pow(e, ((new Big(-0.5).times(distribuicao)))));
-    const desvio = (new Big(1).div((new Big(2).times(Math.PI)).sqrt().times(desvioPadraoB)));
+    const desvio = (new Big(1).div((new Big(2).times(pi)).sqrt().times(desvioPadraoB)));
     return Number(eulerElevado.times(desvio))
 }
 
@@ -19,12 +21,12 @@ function calculaSnellDescartes(n1, n2, ang1) {
     const n2B = new Big(n2);
     const ang1B = new Big(ang1);
 
-    const conversaoRadAng1 = (ang1B.times(Math.PI)).div(new Big(180));
+    const conversaoRadAng1 = (ang1B.times(pi)).div(new Big(180));
     const senoAng1 = Math.sin(conversaoRadAng1);
     const indiceRefracao = n1B.times(senoAng1);
     const ang2 = indiceRefracao.div(n2B);
-    const arcosenoAng2 = Math.asin(ang2);
-    return arcosenoAng2.times(new Big(180).div(Math.PI()))
+    const arcosenoAng2 = new Big(Math.asin(ang2));
+    return Number(arcosenoAng2.times(new Big(180).div(pi)))
 }
 
 function calculaLog(x, y) {
@@ -89,7 +91,7 @@ function desvioPadrao(valorIndividual, mediaDosValores, numeroDeValores) {
 
     const diferencaPadrao = Math.pow((valorIndividualB.minus(mediaDosValoresB)), new Big(2));
     const variancia = new Big(diferencaPadrao).div(numeroDeValoresB);
-    const desvioPadrao = Math.sqrt(variancia, new Big(2));
+    const desvioPadrao = floorFigure((Math.sqrt(variancia, new Big(2))), 13);
     return Number(desvioPadrao)
 }
 module.exports = {

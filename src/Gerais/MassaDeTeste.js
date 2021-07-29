@@ -1,10 +1,10 @@
 const massaDeTeste = {
     Gaussiana: [
-        { inicial: 1020.506049, mediagauss: 1050.395710, desvioPadraogauss: 80.433292, finalEsperado: 29.947425331}, 
-        { inicial: 549.554, mediagauss: 606.990, desvioPadraogauss: 23.211, finalEsperado: 0.4334720679},
-        { inicial: 2033.80889254, mediagauss: 2322.12993827, desvioPadraogauss: 100.21199866, finalEsperado:0.637287420}],
+        { x: 520.506049, media: 150.395710, desvioPadrao: 122.433292, finalEsperado: 0.00003378027542191}, 
+        { x: 549.554, media: 606.990, desvioPadrao: 23.211, finalEsperado: 0.000804587746988250000},
+        { x: 2033.80889254, media: 2322.12993827, desvioPadrao: 100.21199866, finalEsperado: 0.000063459390654853600}],
     SnellDescartes: [
-        { n1: 2.230919, n2: 4.292914, ang1: 62, finalEsperado: 27.31263915},
+        { n1: 2.230919, n2: 4.292914, ang1: 62, finalEsperado: 27.3126391},
         { n1: 1.285, n2: 2.288, ang1: 33.3, finalEsperado: 18.2674608},
         { n1: 0.19238544, n2: 1.85931099, ang1: 15.292, finalEsperado: 1.563953963}],
     Log: [
@@ -18,11 +18,11 @@ const massaDeTeste = {
         { coef1: 0.12345678, coef2: 77.29514846, coef3: 22.98765432, finalEsperado: 2103.20682823838000}
         ],
     JurosSimples: [
-        { capital: 400, taxaJuros: 0.06, numeroPeriodo: 12, finalEsperado: 288},
-        { capital: 2838.833445, taxaJuros: 0.1, numeroPeriodo: 3, finalEsperado: 851.65003350},
-        { capital: 7552.98920128, taxaJuros: 0.23332135, numeroPeriodo: 7, finalEsperado: 12335.91545884650}],
+        { capital: 400, taxaJuros: 0.06, numeroPeriodo: 12, finalEsperado: 288.0000000},
+        { capital: 2838.833445, taxaJuros: 0.1, numeroPeriodo: 3, finalEsperado: 851.6500335},
+        { capital: 7552.98920128, taxaJuros: 0.23332135, numeroPeriodo: 7, finalEsperado: 12335.9154588}],
     JurosCompostos: [
-        { capital: 400, taxaJuros: 0.06, numeroPeriodos: 12, finalEsperado: 804.878588734221},
+        { capital: 400, taxaJuros: 0.06, numeroPeriodos: 12, finalEsperado: 804.878588734220},
         { capital: 2838.833445, taxaJuros: 0.1, numeroPeriodos: 3, finalEsperado: 3778.487315295000},
         { capital: 7552.98920128, taxaJuros: 0.23332135, numeroPeriodos: 7, finalEsperado: 32783.295713429000}],
     Amortizacao: [

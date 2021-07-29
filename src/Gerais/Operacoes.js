@@ -3,8 +3,9 @@ function calculaGaussiana(x, media, desvioPadrao) {
     const e = 2.71828182845;
     const distribuicao = Math.pow(((x - media) / (desvioPadrao)), 2);
     const eulerElevado = Math.pow(e, ((-0.5 * distribuicao)));
-    const desvio = (1 / (Math.sqrt(2 * Math.PI)) * desvioPadrao)
-    return eulerElevado * desvio
+    const desvio = (1 / ((Math.sqrt(2 * Math.PI)) * desvioPadrao))
+    const resultado = eulerElevado*desvio
+    return resultado
 }
 
 function calculaSnellDescartes(n1, n2, ang1) {
