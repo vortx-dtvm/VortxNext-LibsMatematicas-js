@@ -19,6 +19,9 @@ function calculoPuPos(mediaCdi, porcentagem, dp, fatorDiAcumulado, vne) {
 }
 
 function calculoFatorDi(mediaCdiB) {
+
+    if (!(mediaCdiB instanceof Decimal)) mediaCdiB = new Decimal(mediaCdiB)
+
     const doisCincoDois = new Decimal(252);
     const cem = new Decimal(100);
     const div1por252 = (um.dividedBy(doisCincoDois));

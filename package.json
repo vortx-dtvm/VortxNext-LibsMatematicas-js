@@ -8,7 +8,7 @@
     "test": "mocha --recursive src/**/**/*.test.js --timeout 1000",
     "test:all": "smocha --recursive src/**/**/*.test.js --timeout 1000"
   },
-  "author": "isabella oliveira",
+  "author": "Isabella Oliveira",
   "license": "ISC",
   "dependencies": {
     "as-big": "^0.1.4",
