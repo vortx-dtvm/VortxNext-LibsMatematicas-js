@@ -9,24 +9,23 @@ describe('Deve realizar o calculo de pu incorretamente de um ativo pós-fixado u
     it('Deve calcular o PU', () => {
         // Massa
         let mediaCdi = 4.15;
-        let dp = 19;
+        let dp = 36;
         let porcentagem = 0.06;
-        let fatorDiAcumulado = 1.002563554918;
-        let vne = 10000;
+        let fatorDiAcumuladoAnterior = 1.00531744
+        let vne = 10006;
 
         // Comportamento
         const puFinal = calculoPuPos(
             mediaCdi,
             porcentagem,
             dp,
-            fatorDiAcumulado,
+            fatorDiAcumuladoAnterior,
             vne)
 
 
         // Resultado esperado
-        expect(puFinal.toFixed(12)).to.be.equal('10071.402932321400')
-        expect(puFinal.toFixed(12)).to.be.equal(10071.402932321400.toFixed(12))
-        expect(puFinal).to.be.equal(10071.402932321400)
+        expect(puFinal).to.be.equal(10144.92670604)
+
     })
 
     it('Deve calcular o PU em um periodo de um mes, utilizando o fator acumulado', () => {
