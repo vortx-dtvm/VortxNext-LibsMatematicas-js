@@ -2,8 +2,8 @@ const { expect } = require('chai')
 
 const { calculoPuPos, calculoFatorDi, calculoPuPre } = require('./FormulaPuMath')
 
-describe.only('Deve realizar o calculo de pu incorretamente de um ativo pós-fixado utilizando a lib Math', () => {
-    it.only('Deve calcular o PU', () => {
+describe('Deve realizar o calculo de pu incorretamente de um ativo pós-fixado utilizando a lib Math', () => {
+    it('Deve calcular o PU', () => {
         let mediaCdi = 4.15;
         let dp = 36;
         let porcentagem = 0.06;
@@ -25,6 +25,45 @@ describe.only('Deve realizar o calculo de pu incorretamente de um ativo pós-fix
         expect(puFinal.pu).to.not.be.equal(puEsperado)
     })
 
+    it('Deve calcular o PU corretamente ultilizando o fator acumulado de outro calculo', () => {
+        let mediaCdi = 4.15;
+        let dp = 36;
+        let porcentagem = 0.06;
+        let fatorDiAcumuladoAnterior = 1.00531743243777
+        let vne = 10006.00
+
+        const puPrimeiroDia = calculoPuPos(mediaCdi, porcentagem, dp, fatorDiAcumuladoAnterior, vne)
+
+        let spreadEsperado = 1.00835887163168
+        let diEsperado = 1.00016137008907
+        let diAcumuladoEsperado = 1.00547966060139
+        let fatorJurosEsperado = 1.01388433601262
+        let puEsperado = 10144.9266661423
+
+        expect(puPrimeiroDia.spread).to.be.equal(spreadEsperado)
+        expect(puPrimeiroDia.di).to.be.equal(diEsperado)
+        expect(puPrimeiroDia.diAcumulado).to.not.be.equal(diAcumuladoEsperado)
+        expect(puPrimeiroDia.fatorJuros).to.not.be.equal(fatorJurosEsperado)
+        expect(puPrimeiroDia.pu).to.not.be.equal(puEsperado)
+
+        dp++
+        fatorDiAcumuladoAnterior = puPrimeiroDia.diAcumulado
+        vne = 10007.00
+
+        const puSegundoDia = calculoPuPos(mediaCdi, porcentagem, dp, fatorDiAcumuladoAnterior, vne)
+
+        spreadEsperado = 1.00859205720279
+        diEsperado = 1.00016137008907
+        diAcumuladoEsperado = 1.00564191494378
+        fatorJurosEsperado = 1.01428244780250
+        puEsperado = 10149.9244551596
+
+        expect(puSegundoDia.spread).to.be.equal(spreadEsperado)
+        expect(puSegundoDia.di).to.be.equal(diEsperado)
+        expect(puSegundoDia.diAcumulado).to.not.be.equal(diAcumuladoEsperado)
+        expect(puSegundoDia.fatorJuros).to.not.be.equal(fatorJurosEsperado)
+        expect(puSegundoDia.pu).to.not.be.equal(puEsperado)
+    })
 })
 
 describe('Deve realizar o calculo de pu incorretamente de um ativo pré-fixado utilizando a lib Math', () => {
