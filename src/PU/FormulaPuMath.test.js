@@ -1,66 +1,33 @@
 const { expect } = require('chai')
 
 const { calculoPuPos, calculoFatorDi, calculoPuPre } = require('./FormulaPuMath')
-const { mediasCdi, puEsperado } = require('./MassaDeTeste/MassaDeTestePosFixado')
-const { puEsperadoPre } = require('./MassaDeTeste/MassaDeTestePreFixado')
 
-describe('Deve realizar o calculo de pu incorretamente de um ativo pós-fixado utilizando a lib Math', () => {
-
-    it('Deve calcular o PU', () => {
+describe.only('Deve realizar o calculo de pu incorretamente de um ativo pós-fixado utilizando a lib Math', () => {
+    it.only('Deve calcular o PU', () => {
         let mediaCdi = 4.15;
         let dp = 36;
         let porcentagem = 0.06;
-        let fatorDiAcumuladoAnterior = 1.00531744
-        let vne = 10006;
+        let fatorDiAcumuladoAnterior = 1.00531743243777
+        let vne = 10006.00
 
-        // Comportamento
-        const puFinal = calculoPuPos(
-            mediaCdi,
-            porcentagem,
-            dp,
-            fatorDiAcumuladoAnterior,
-            vne)
+        const puFinal = calculoPuPos(mediaCdi, porcentagem, dp, fatorDiAcumuladoAnterior, vne)
 
+        const spreadEsperado = 1.00835887163168
+        const diEsperado = 1.00016137008907
+        const diAcumuladoEsperado = 1.00547966060139
+        const fatorJurosEsperado = 1.01388433601262
+        const puEsperado = 10144.9266661423
 
-        // Resultado esperado
-        expect(puFinal).to.be.equal(10144.92670604)
+        expect(puFinal.spread).to.be.equal(spreadEsperado)
+        expect(puFinal.di).to.be.equal(diEsperado)
+        expect(puFinal.diAcumulado).to.not.be.equal(diAcumuladoEsperado)
+        expect(puFinal.fatorJuros).to.not.be.equal(fatorJurosEsperado)
+        expect(puFinal.pu).to.not.be.equal(puEsperado)
     })
 
-    it('Deve calcular o PU em um periodo de um mes, utilizando o fator acumulado', () => {
-        // Massa
-        //let dik = 6.39;
-        //let dp = 20;
-        let porcentagem = 0.06;
-        //let fatordiacumuladoantes = 1.00000000;
-        let vne = 10000;
-
-        // Comportamento
-
-        var i = 0;
-        let fatorDiAcumulado = 1.00000000;
-        let mediaCdi = 1.00000000;
-
-        while (i < mediasCdi.length) {
-            let dp = i + 1;
-
-            const puFinal = calculoPuPos(
-                mediaCdi,
-                porcentagem,
-                dp,
-                fatorDiAcumulado,
-                vne)
-
-            mediaCdi = mediasCdi[i];
-            fatorDiAcumulado = fatorDiAcumulado * calculoFatorDi(mediaCdi);
-            // Resultado esperado
-            expect(puFinal).to.be.equal(puEsperado[i])
-            i++;
-        }
-    })
 })
 
 describe('Deve realizar o calculo de pu incorretamente de um ativo pré-fixado utilizando a lib Math', () => {
-
     it('Deve calcular o PU', () => {
         // Massa
         let dp = 7;
@@ -78,28 +45,5 @@ describe('Deve realizar o calculo de pu incorretamente de um ativo pré-fixado u
         expect(puFinal.toFixed(12)).to.be.equal('10058.38180897000')
         expect(puFinal.toFixed(12)).to.be.equal(10058.38180897000.toFixed(12))
         expect(puFinal).to.be.equal(10058.38180897000)
-    })
-
-
-    it('Deve calcular o PU em um periodo de um mes', () => {
-        // Massa
-        let porcentagem = 0.158;
-        //let fatordiacumuladoantes = 1.00000000;
-        let vne = 10017.47887;
-
-        // Comportamento
-
-        var i = 0;
-
-        while (i < puEsperadoPre.length) {
-            let dp = i + 1;
-
-            const puFinalPre = calculoPuPre(
-                vne, porcentagem, dp)
-
-            // Resultado esperado
-            expect(puFinalPre.toFixed(3)).to.be.equal(puEsperadoPre[i].toFixed(3));
-            i++;
-        }
     })
 })
