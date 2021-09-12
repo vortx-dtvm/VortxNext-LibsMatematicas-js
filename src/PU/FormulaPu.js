@@ -7,17 +7,17 @@ function calculoPuPos(mediaCdi, porcentagem, dp, fatorDiAcumuladoAnterior, vne) 
     const juros = diAcumulado * spread
     const pu = vne * juros
 
-    const spreadToFixed = calculoFatorSpread(porcentagem, dp).toFixed(15)
+    const spreadToFixed = calculoFatorSpread(porcentagem, dp).toFixed(14)
     const diToFixed = calculoFatorDi(mediaCdi).toFixed(14)
     const diAcumuladoToFixed = (fatorDiAcumuladoAnterior * diToFixed).toFixed(14)
     const jurosToFixed = (diAcumuladoToFixed * spreadToFixed).toFixed(14)
-    const puToFixed = (vne * jurosToFixed).toFixed(14)
+    const puToFixed = (vne * jurosToFixed).toFixed(10)
 
-    const spreadFloorFigure = floorFigure(calculoFatorSpread(porcentagem, dp), 15)
+    const spreadFloorFigure = floorFigure(calculoFatorSpread(porcentagem, dp), 14)
     const diFloorFigure = floorFigure(calculoFatorDi(mediaCdi), 14)
     const diAcumuladoFloor = floorFigure((fatorDiAcumuladoAnterior * diFloorFigure), 14)
     const jurosFloor = floorFigure((diAcumuladoFloor * spreadFloorFigure), 14)
-    const puFloorFigure = floorFigure((vne * jurosFloor), 14)
+    const puFloorFigure = floorFigure((vne * jurosFloor), 10)
 
     return {
         toFixed: {

@@ -3,26 +3,26 @@ const { calculoPuPos, calculoFatorDi, calculoPuPre } = require('./FormulaPu')
 
 describe.only('Deve realizar o calculo de pu incorretamente de um ativo pós-fixado utilizando o javascript nativo', () => {
 
-    it('Deve calcular o PU', () => {
+    it.only('Deve calcular o PU', () => {
         let mediaCdi = 4.15;
         let dp = 36;
         let porcentagem = 0.06;
-        let fatorDiAcumuladoAnterior = 1.005317441990610
-        let vne = 10006;
+        let fatorDiAcumuladoAnterior = 1.00531743243777
+        let vne = 10006.00
 
         const puFinal = calculoPuPos(mediaCdi, porcentagem, dp, fatorDiAcumuladoAnterior, vne)
 
-        const spreadEsperado = 1.008358871631680
-        const diEsperado = 1.000161370089070
-        const diAcumuladoEsperado = 1.005479670155770
-        const fatorJurosEsperado = 1.013884345646870
-        const puEsperado = 10144.926762542600000
+        const spreadEsperado = 1.00835887163168
+        const diEsperado = 1.00016137008907
+        const diAcumuladoEsperado = 1.00547966060139
+        const fatorJurosEsperado = 1.01388433601262
+        const puEsperado = 10144.9266661423 
 
-        expect(puFinal.toFixed.spread).to.not.be.equal(spreadEsperado)
+        expect(puFinal.toFixed.spread).to.be.equal(spreadEsperado)
         expect(puFinal.toFixed.di).to.be.equal(diEsperado)
         expect(puFinal.toFixed.diAcumulado).to.be.equal(diAcumuladoEsperado)
         expect(puFinal.toFixed.fatorJuros).to.be.equal(fatorJurosEsperado)
-        expect(puFinal.toFixed.pu).to.not.be.equal(puEsperado)
+        expect(puFinal.toFixed.pu).to.be.equal(puEsperado)
 
         expect(puFinal.nativo.spread).to.not.be.equal(spreadEsperado)
         expect(puFinal.nativo.di).to.not.be.equal(diEsperado)
