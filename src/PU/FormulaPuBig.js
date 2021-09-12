@@ -12,13 +12,21 @@ function calculoPuPos(mediaCdi, porcentagem, dp, fatorDiAcumulado, vne) {
     const fatorDiAcumuladoB = new Big(fatorDiAcumulado);
     const vneB = new Big(vne);
 
-    const fatordi = calculoFatorDi(mediaCdiB);
-    const fatorspread = calculoFatorSpread(porcentagemB, dpB);
-    const fatordiacumulado = fatorDiAcumuladoB.times(fatordi);
-    const fatorjuros = fatordiacumulado.times(fatorspread);
+    const di = calculoFatorDi(mediaCdiB);
+    const spread = calculoFatorSpread(porcentagemB, dpB);
+    const diAcumulado = fatorDiAcumuladoB.times(di);
+    const fatorJuros = diAcumulado.times(spread);
 
-    const pu = (vneB).times(fatorjuros);
-    return Number(pu.toPrecision());
+    const pu = (vneB).times(fatorJuros);
+
+
+    return {
+        spread: spread.round(14, Big.roundDown).toNumber(),
+        di: di.round(14, Big.roundUp).toNumber(),
+        diAcumulado: diAcumulado.round(14, Big.roundUp).toNumber(),
+        fatorJuros: fatorJuros.round(14, Big.roundUp).toNumber(),
+        pu: pu.round(10, Big.roundUp).toNumber(),
+    }
 }
 
 function calculoPuPre(vne, porcentagem, dp) {
