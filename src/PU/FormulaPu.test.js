@@ -78,6 +78,21 @@ describe('JavaScript Nativo', () => {
             expect(puSegundoDia.toFixed.fatorJuros).to.be.equal(fatorJurosEsperado)
             expect(puSegundoDia.toFixed.pu).to.be.equal(puEsperado)
         })
+
+        it('Calcula de um periodo de um mês', () => {
+            const { puEsperado, mediasCdi } = require('./MassaDeTeste/MassaDeTestePosFixado')
+            const porcentagem = 0.06;
+            const vne = 10000.00
+            let fatorDiAcumuladoAnterior = 1.00000000
+
+            for (dp = 1; dp < puEsperado.length; dp++) {
+                let mediaCdi = mediasCdi[dp];
+
+                const { toFixed } = calculoPuPos(mediaCdi, porcentagem, dp, fatorDiAcumuladoAnterior, vne)
+                expect(toFixed.pu).to.be.equal(puEsperado[dp])
+                fatorDiAcumuladoAnterior = toFixed.diAcumulado
+            }
+        })
     })
 
 

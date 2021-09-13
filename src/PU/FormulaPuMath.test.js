@@ -65,6 +65,22 @@ describe('MathJS', () => {
             expect(puSegundoDia.fatorJuros).to.not.be.equal(fatorJurosEsperado)
             expect(puSegundoDia.pu).to.not.be.equal(puEsperado)
         })
+
+
+        it.skip('Calcula de um periodo de um mês', () => {
+            const { puEsperado, mediasCdi } = require('./MassaDeTeste/MassaDeTestePosFixado')
+            const porcentagem = 0.06;
+            const vne = 10000.00
+            let fatorDiAcumuladoAnterior = 1.00000000
+
+            for (dp = 1; dp < puEsperado.length; dp++) {
+                let mediaCdi = mediasCdi[dp];
+
+                const { pu, diAcumulado } = calculoPuPos(mediaCdi, porcentagem, dp, fatorDiAcumuladoAnterior, vne)
+                expect(pu).to.not.be.equal(puEsperado[dp])
+                fatorDiAcumuladoAnterior = diAcumulado
+            }
+        })
     })
 
     describe('Deve realizar o calculo de pu de um ativo pré-fixado', () => {
