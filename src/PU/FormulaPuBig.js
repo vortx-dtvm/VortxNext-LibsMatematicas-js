@@ -30,18 +30,20 @@ function calculoPuPos(mediaCdi, porcentagem, dp, fatorDiAcumulado, vne) {
 }
 
 function calculoPuPre(vne, porcentagem, dp) {
-
     const vneB = new Big(vne)
     const porcentagemB = new Big(porcentagem)
     const dpB = new Big(dp)
 
 
     const divisaoFinal = dpB.div(doisCincoDois);
-    const taxa = new Big(Math.pow((um.plus(porcentagemB)), divisaoFinal.toPrecision()))
+    const fatorJuros = new Big(Math.pow((um.plus(porcentagemB)), divisaoFinal.toPrecision()))
 
-    const pu = vneB.times(taxa)
+    const pu = vneB.times(fatorJuros)
 
-    return Number(pu.toPrecision());
+    return {
+        pu: pu.round(10, Big.roundUp).toNumber(),
+        fatorJuros: fatorJuros.round(14, Big.roundDown).toNumber(),
+    }
 }
 
 function calculoFatorDi(mediaCdiB) {
@@ -59,4 +61,4 @@ function calculoFatorSpread(porcentagemB, dpB) {
 }
 
 
-module.exports = { calculoPuPos, calculoFatorDi, calculoFatorSpread, calculoPuPre }
+module.exports = { calculoPuPos, calculoPuPre, calculoFatorDi }

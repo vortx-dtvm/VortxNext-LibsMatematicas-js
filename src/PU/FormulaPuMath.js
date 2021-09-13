@@ -25,8 +25,12 @@ function calculoFatorSpread(porcentagem, dp) {
     return pow((add(1, porcentagem)), divide(dp, 252))
 }
 function calculoPuPre(vne, porcentagem, dp) {
-    const pu = multiply(vne, (pow((add(1, porcentagem)), divide(dp, 252))))
-    return pu
+    const fatorJuros = pow((add(1, porcentagem)), divide(dp, 252))
+    const pu = multiply(vne, fatorJuros)
+    return {
+        fatorJuros: round(fatorJuros, 14),
+        pu: round(pu, 10),
+    }
 }
 
-module.exports = { calculoPuPos, calculoFatorDi, calculoFatorSpread, calculoPuPre }
+module.exports = { calculoPuPos, calculoPuPre, calculoFatorDi }

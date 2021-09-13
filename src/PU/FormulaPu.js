@@ -66,11 +66,11 @@ function calculoPuPre(vne, porcentagem, dp) {
     const pu = vne * juros
 
 
-    const jurosToFixed = (Math.pow(dpPorDoisCincoDois, porcentagemMaisUm)).toFixed(9)
-    const puToFixed = (vne * juros).toFixed(14)
+    const jurosToFixed = (Math.pow(porcentagemMaisUm, dpPorDoisCincoDois)).toFixed(14)
+    const puToFixed = (vne * juros).toFixed(10)
 
-    const jurosFloorFigure = floorFigure(Math.pow(porcentagemMaisUm, dpPorDoisCincoDois), 9)
-    const puFloorFigure = floorFigure((vne * juros), 14)
+    const jurosFloorFigure = floorFigure(Math.pow(porcentagemMaisUm, dpPorDoisCincoDois), 14)
+    const puFloorFigure = floorFigure((vne * juros), 10)
 
     return {
         toFixed: {
@@ -88,4 +88,4 @@ function calculoPuPre(vne, porcentagem, dp) {
     }
 }
 
-module.exports = { calculoPuPos, calculoFatorDi, calculoFatorSpread, calculoPuPre }
+module.exports = { calculoPuPos, calculoPuPre, calculoFatorDi }

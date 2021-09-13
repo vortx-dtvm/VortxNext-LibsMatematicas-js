@@ -40,12 +40,19 @@ function calculoFatorSpread(porcentagemDecimal, dpB) {
     const divisaoDp = new Decimal(dpB.dividedBy(doisCincoDois))
     return new Decimal(um.plus(porcentagemDecimal)).pow(divisaoDp)
 }
-function calculoPuPre(vneDecimal, porcentagemDecimal, dpB) {
-    dpB = new Decimal(dpB)
+function calculoPuPre(vne, porcentagem, dp) {
+    const dpDecimal = new Decimal(dp)
+    const vneDecimal = new Decimal(vne)
     const doisCincoDois = new Decimal(252)
-    let divisaoFinal = dpB.dividedBy(doisCincoDois)
-    const pu = new Decimal(vneDecimal).times((new Decimal(um.plus(porcentagemDecimal)).pow(divisaoFinal)))
-    return Number(pu)
+    const divisaoFinal = dpDecimal.dividedBy(doisCincoDois)
+
+    const fatorJuros = (um.plus(porcentagem)).pow(divisaoFinal)
+    const pu = vneDecimal.times(fatorJuros)
+
+    return {
+        fatorJuros: fatorJuros.toDecimalPlaces(14, Decimal.ROUND_DOWN).toNumber(),
+        pu: pu.toDecimalPlaces(10, Decimal.ROUND_UP).toNumber(),
+    }
 }
 
-module.exports = { calculoPuPos, calculoFatorDi, calculoFatorSpread, calculoPuPre }
+module.exports = { calculoPuPos, calculoPuPre, calculoFatorDi }
