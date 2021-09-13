@@ -21,7 +21,7 @@ function calculoPuPos(mediaCdi, porcentagem, dp, fatorDiAcumuladoAnterior, vne) 
         di: di.toDecimalPlaces(14, Decimal.ROUND_UP).toNumber(),
         diAcumulado: diAcumulado.toDecimalPlaces(14, Decimal.ROUND_UP).toNumber(),
         fatorJuros: fatorJuros.toDecimalPlaces(14, Decimal.ROUND_UP).toNumber(),
-        pu: pu.toDecimalPlaces(10, Decimal.ROUND_DOWN).toNumber(),
+        pu: pu.toDecimalPlaces(10, Decimal.ROUND_UP).toNumber(),
     }
 }
 
