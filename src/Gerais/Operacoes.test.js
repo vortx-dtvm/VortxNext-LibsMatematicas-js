@@ -13,12 +13,12 @@ describe('Deve realizar o calculo da curva Gaussiana utilizando  JavaScript nati
 
         // Comportamento
         const resultado = Operacoes.calculaGaussiana(x, media, desvioPadrao)
-        
+
         //Resultado esperado
         expect(resultado.toFixed(19)).to.be.equal('0.0000337802754219136')
-        })
+    })
 
-        it('Deve calcular o valor da curva, utilizando varios valores nos parâmetros', () => {
+    it('Deve calcular o valor da curva, utilizando varios valores nos parâmetros', () => {
         MassaDeTeste.Gaussiana.forEach(({ x, media, desvioPadrao, finalEsperado }) => {
             const resultado = Operacoes.calculaGaussiana(x, media, desvioPadrao)
             expect(resultado.toFixed(17)).to.be.equal(finalEsperado.toFixed(17))
@@ -36,10 +36,10 @@ describe('Deve realizar a lei Snell Descartes utilizando JavaScript nativo', () 
 
         // Comportamento
         const resultado = Operacoes.calculaSnellDescartes(n1, n2, ang1)
-        
+
         //Resultado esperado
         expect(resultado).to.be.equal(44.1127419448138)
-        })
+    })
 
     it('Deve calcular o angulo 2, utilizando varios valores nos parâmetros', () => {
         MassaDeTeste.SnellDescartes.forEach(({ n1, n2, ang1, finalEsperado }) => {
@@ -58,10 +58,10 @@ describe('Deve realizar o calculo da divisão de logs utilizando JavaScript nati
 
         // Comportamento
         const resultado = Operacoes.calculaLog(x, y)
-        
+
         //Resultado esperado
         expect(resultado.toFixed(13)).to.be.equal('1.1166934448159')
-        })
+    })
 
     it('Deve calcular o resultado da divisão, utilizando varios valores nos parâmetros', () => {
         MassaDeTeste.Log.forEach(({ x, y, finalEsperado }) => {
@@ -75,27 +75,35 @@ describe('Deve realizar o calculo de Bhaskara utilizando JavaScript nativo', () 
 
     it('Deve calcular o valor da divisão, utilizando valor unitário', () => {
         // Massa
-        let coef1 = 0.4554;
-        let coef2 = 10.432;
-        let coef3 = 1.2033;
+        let coef1 = 0.2
+        let coef2 = 4
+        let coef3 = 6
+        let finalEsperado = 11.2444001768938
 
         // Comportamento
-        const resultado = Operacoes.calculaBhaskara(coef1, coef2, coef3)
-        
+        const resultado = Operacoes.calculaBhaskara(coef1, coef2, coef3, 13)
+
         //Resultado esperado
-        expect(resultado.toFixed(12)).to.be.equal('196.589869219247')
-        })
+        expect(resultado.nativo).to.not.be.equal(finalEsperado)
+        expect(resultado.floorFigure).to.be.equal(finalEsperado)
+        expect(resultado.toFixed).to.be.equal(finalEsperado)
+    })
 
     it('Deve calcular o resultado da divisão das duas raízes, utilizando varios valores nos parâmetros', () => {
-        MassaDeTeste.Bhaskara.forEach(({ coef1, coef2, coef3, finalEsperado }) => {
-            const resultado = Operacoes.calculaBhaskara(coef1, coef2, coef3, finalEsperado)
-            expect(resultado.toFixed((11))).to.be.equal(finalEsperado.toFixed(11))
+        MassaDeTeste.Bhaskara.forEach(({ coef1, coef2, coef3, finalEsperado, casasDecimais }) => {
+            const resultado = Operacoes.calculaBhaskara(coef1, coef2, coef3, casasDecimais)
+            expect(resultado.nativo).to.not.be.equal(finalEsperado)
+            try {
+                expect(resultado.floorFigure).to.be.equal(finalEsperado)
+            } catch (_) {
+                expect(resultado.toFixed).to.be.equal(finalEsperado)
+            }
         })
     })
 })
 
 describe('Deve realizar o calculo de Juros Simples utilizando JavaScript nativo', () => {
-    
+
     it('Deve calcular o valor do juros, utilizando valor unitário', () => {
         // Massa
         let capital = 410.456;
@@ -104,10 +112,10 @@ describe('Deve realizar o calculo de Juros Simples utilizando JavaScript nativo'
 
         // Comportamento
         const resultado = Operacoes.calculoJurosSimples(capital, taxaJuros, numeroPeriodo)
-        
+
         //Resultado esperado
         expect(resultado).to.be.equal(158.84647200000)
-        })
+    })
 
     it('Deve calcular do juros, utilizando varios valores nos parâmetros', () => {
         MassaDeTeste.JurosSimples.forEach(({ capital, taxaJuros, numeroPeriodo, finalEsperado }) => {
@@ -127,10 +135,10 @@ describe('Deve realizar o calculo de Juros Compostos utilizando JavaScript nativ
 
         // Comportamento
         const resultado = Operacoes.calculoJurosCompostos(capital, taxaJuros, numeroPeriodo)
-        
+
         //Resultado esperado
         expect(resultado.toFixed(8)).to.be.equal('366984.90233832')
-        })
+    })
 
     it('Deve calcular do juros, utilizando varios valores nos parâmetros', () => {
         MassaDeTeste.JurosCompostos.forEach(({ capital, taxaJuros, numeroPeriodos, finalEsperado }) => {
@@ -150,10 +158,10 @@ describe('Deve realizar o calculo de Amortização utilizando JavaScript nativo'
 
         // Comportamento
         const resultado = Operacoes.calculoAmortizacao(capitalInicial, taxaJuros, numeroPeriodo)
-        
+
         //Resultado esperado
         expect(resultado.toFixed(12)).to.be.equal('721.806898252323')
-        })
+    })
 
     it('Deve calcular da prestação, utilizando varios valores nos parâmetros', () => {
         MassaDeTeste.Amortizacao.forEach(({ capitalInicial, taxaJuros, numeroPeriodo, finalEsperado }) => {
@@ -173,10 +181,10 @@ describe('Deve realizar o calculo de Desvio Padrão utilizando JavaScript nativo
 
         // Comportamento
         const resultado = Operacoes.desvioPadrao(valorIndividual, mediaDosValores, numeroDeValores)
-        
+
         //Resultado esperado
         expect(resultado.toFixed(13)).to.be.equal('18.1353606070523')
-        })
+    })
 
     it('Deve calcular do desvio, utilizando varios valores nos parâmetros', () => {
         MassaDeTeste.DesvioPadrao.forEach(({ valorIndividual, mediaDosValores, numeroDeValores, finalEsperado }) => {

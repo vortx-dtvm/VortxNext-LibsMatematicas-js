@@ -26,6 +26,9 @@ function calculaSnellDescartes(n1, n2, ang1) {
     const indiceRefracao = n1B.times(senoAng1);
     const ang2 = indiceRefracao.div(n2B);
     const arcosenoAng2 = new Big(Math.asin(ang2));
+
+
+    
     return Number(arcosenoAng2.times(new Big(180).div(pi)))
 }
 

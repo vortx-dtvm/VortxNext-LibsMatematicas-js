@@ -38,7 +38,7 @@ describe('Deve realizar a lei Snell Descartes utilizando a lib Big', () => {
         const resultado = Operacoes.calculaSnellDescartes(n1, n2, ang1)
         
         //Resultado esperado
-        expect(resultado).to.be.equal(44.1127419448138)
+        expect(resultado).to.not.be.equal(44.1127419448138)
         })
 
     it('Deve calcular o angulo 2, utilizando varios valores nos parâmetros', () => {

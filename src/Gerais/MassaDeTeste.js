@@ -5,17 +5,17 @@ const massaDeTeste = {
         { x: 2033.80889254, media: 2322.12993827, desvioPadrao: 100.21199866, finalEsperado: 0.000063459390654853600}],
     SnellDescartes: [
         { n1: 2.230919, n2: 4.292914, ang1: 62, finalEsperado: 27.3126391},
-        { n1: 1.285, n2: 2.288, ang1: 33.3, finalEsperado: 18.2674608},
-        { n1: 0.19238544, n2: 1.85931099, ang1: 15.292, finalEsperado: 1.563953963}],
+        { n1: 1.285, n2: 2.288, ang1: 33.3, finalEsperado: 17.9595460811409},
+        { n1: 0.19238544, n2: 1.85931099, ang1: 15.292, finalEsperado: 1.5637597589207217}],
     Log: [
         { x: 3.534, y: 5.084, finalEsperado:0.776355484},
         { x: 4, y: 6, finalEsperado: 0.773705614},
         { x: 2.12342233, y: 3.98175224, finalEsperado: 0.544993206}
         ],
     Bhaskara: [
-        { coef1: 0.2, coef2: 4, coef3: 6, finalEsperado: 11.24440017689380 },
-        { coef1: 0.323448, coef2: 9.393473 , coef3: 19.933333, finalEsperado: 11.59952026233060},
-        { coef1: 0.12345678, coef2: 77.29514846, coef3: 22.98765432, finalEsperado: 2103.20682823838000}
+        { coef1: 0.2, coef2: 4, coef3: 6, finalEsperado: 11.2444001768938, casasDecimais: 13 },
+        { coef1: 0.323448, coef2: 9.393473 , coef3: 19.933333, finalEsperado: 11.5995202623306, casasDecimais: 13 },
+        { coef1: 0.12345678, coef2: 77.29514846, coef3: 22.98765432, finalEsperado: 2103.20682823838, casasDecimais: 11}
         ],
     JurosSimples: [
         { capital: 400, taxaJuros: 0.06, numeroPeriodo: 12, finalEsperado: 288.0000000},

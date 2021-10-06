@@ -1,10 +1,10 @@
-
+const { floorFigure } = require('../Util')
 function calculaGaussiana(x, media, desvioPadrao) {
     const e = 2.71828182845;
     const distribuicao = Math.pow(((x - media) / (desvioPadrao)), 2);
     const eulerElevado = Math.pow(e, ((-0.5 * distribuicao)));
     const desvio = (1 / ((Math.sqrt(2 * Math.PI)) * desvioPadrao))
-    const resultado = eulerElevado*desvio
+    const resultado = eulerElevado * desvio
     return resultado
 }
 
@@ -23,11 +23,16 @@ function calculaLog(x, y) {
     return logX / logy;
 }
 
-function calculaBhaskara(coef1, coef2, coef3) {
+function calculaBhaskara(coef1, coef2, coef3, decimais) {
     const delta = Math.pow(coef2, 2) - (4 * coef1 * coef3);
     const raiz1 = (-coef2 - Math.sqrt(delta)) / (2 * coef1);
     const raiz2 = (-coef2 + Math.sqrt(delta)) / (2 * coef1);
-    return raiz1/raiz2
+    const bhaskara = raiz1 / raiz2
+    return {
+        nativo: bhaskara,
+        floorFigure: Number(floorFigure(bhaskara, decimais)),
+        toFixed: Number(bhaskara.toFixed(decimais))
+    }
 }
 
 function calculoJurosSimples(capital, taxaJuros, numeroPeriodos) {
