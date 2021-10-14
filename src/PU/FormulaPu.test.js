@@ -14,6 +14,8 @@ describe('JavaScript Nativo', () => {
 
             const puPrimeiroDia = calculoPuPos(mediaCdi, porcentagem, dp, fatorDiAcumuladoAnterior, vne)
 
+            console.table(puPrimeiroDia)
+
             const spreadEsperado = 1.00835887163168
             const diEsperado = 1.00016137008907
             const diAcumuladoEsperado = 1.00547966060139
@@ -84,14 +86,17 @@ describe('JavaScript Nativo', () => {
             const porcentagem = 0.06;
             const vne = 10000.00
             let fatorDiAcumuladoAnterior = 1.00000000
+            const resultados = []
 
             for (dp = 1; dp < puEsperado.length; dp++) {
                 let mediaCdi = mediasCdi[dp];
 
-                const { toFixed } = calculoPuPos(mediaCdi, porcentagem, dp, fatorDiAcumuladoAnterior, vne)
+                const { toFixed, nativo, floorFigure } = calculoPuPos(mediaCdi, porcentagem, dp, fatorDiAcumuladoAnterior, vne)
+                resultados.push({ puEsperado: puEsperado[dp], finalToFixed: toFixed.pu, finalNativo: nativo.pu, finalFloorFigure: floorFigure.pu})
                 expect(toFixed.pu).to.be.equal(puEsperado[dp])
                 fatorDiAcumuladoAnterior = toFixed.diAcumulado
             }
+            console.table(resultados)
         })
     })
 

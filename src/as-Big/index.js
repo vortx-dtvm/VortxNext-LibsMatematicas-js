@@ -1,6 +1,5 @@
 const fs = require("fs");
-const loader = require("@assemblyscript/loader/umd");
-
+const loader = require('@assemblyscript/loader');
 const imports = {
     myConsole: {
         log(messagePtr) { // Called as `console.log` in assembly/index.ts

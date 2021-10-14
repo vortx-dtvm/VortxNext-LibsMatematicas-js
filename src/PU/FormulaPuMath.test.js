@@ -19,6 +19,8 @@ describe('MathJS', () => {
             const fatorJurosEsperado = 1.01388433601262
             const puEsperado = 10144.9266661423
 
+            console.table(puFinal)
+
             expect(puFinal.spread).to.be.equal(spreadEsperado)
             expect(puFinal.di).to.be.equal(diEsperado)
             expect(puFinal.diAcumulado).to.not.be.equal(diAcumuladoEsperado)
@@ -68,11 +70,11 @@ describe('MathJS', () => {
 
 
         it('Calcula de um periodo de um mês', () => {
-            Math.rou
             const { puEsperado, mediasCdi } = require('./MassaDeTeste/MassaDeTestePosFixado')
             const porcentagem = 0.06;
             const vne = 10000.00
             let fatorDiAcumuladoAnterior = 1.00000000
+            const resultados = []
 
             for (dp = 1; dp < puEsperado.length; dp++) {
                 let mediaCdi = mediasCdi[dp];
@@ -84,9 +86,12 @@ describe('MathJS', () => {
                 } catch ({ actual, expected }) {
                     expect(actual).to.be.equal(puEsperado[dp])
                 }
+                resultados.push({puEsperado:puEsperado[dp], final: pu})
 
                 fatorDiAcumuladoAnterior = diAcumulado
             }
+
+            console.table(resultados)
         })
     })
 

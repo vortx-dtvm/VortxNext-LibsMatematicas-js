@@ -30,9 +30,9 @@ const massaDeTeste = {
         { capitalInicial: 2838.833445, taxaJuros: 0.1, numeroPeriodo: 3, finalEsperado: 1141.53695326133000},
         { capitalInicial: 7552.98920128, taxaJuros: 0.23332135, numeroPeriodo: 7, finalEsperado: 2289.83099120151000}],
     DesvioPadrao: [
-        { valorIndividual: 98, mediaDosValores: 344, numeroDeValores: 10, finalEsperado: 77.79203044},
-        { valorIndividual: 456.218765, mediaDosValores: 322.876542, numeroDeValores: 3, finalEsperado: 76.98516834},
-        { valorIndividual: 23.565487899, mediaDosValores: 24.34567009, numeroDeValores: 223, finalEsperado: 0.052244864}
+        { valorIndividual: 98, mediaDosValores: 344, numeroDeValores: 10, finalEsperado: 77.7920304401421},
+        { valorIndividual: 456.218765, mediaDosValores: 322.876542, numeroDeValores: 3, finalEsperado: 76.9851683433931},
+        { valorIndividual: 23.565487899, mediaDosValores: 24.34567009, numeroDeValores: 223, finalEsperado: 0.052244863766}
         ],
 }
 

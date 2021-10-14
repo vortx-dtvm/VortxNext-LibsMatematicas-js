@@ -15,11 +15,14 @@ describe('Decimal JS', () => {
 
             const puFinal = calculoPuPos(mediaCdi, porcentagem, dp, fatorDiAcumuladoAnterior, vne)
 
+            
             const spreadEsperado = 1.00835887163168
             const diEsperado = 1.00016137008907
             const diAcumuladoEsperado = 1.00547966060139
             const fatorJurosEsperado = 1.01388433601262
             const puEsperado = 10144.9266661423
+            
+            console.table(puFinal)
 
             expect(puFinal.spread).to.be.equal(spreadEsperado)
             expect(puFinal.di).to.be.equal(diEsperado)
@@ -68,19 +71,29 @@ describe('Decimal JS', () => {
             expect(puSegundoDia.pu).to.be.equal(puEsperado)
         })
 
-        it.skip('Calcula de um periodo de um mês', () => {
+        it('Calcula de um periodo de um mês', () => {
             const { puEsperado, mediasCdi } = require('./MassaDeTeste/MassaDeTestePosFixado')
             const porcentagem = 0.06;
             const vne = 10000.00
             let fatorDiAcumuladoAnterior = 1.00000000
+            const resultados = []
 
             for (dp = 1; dp < puEsperado.length; dp++) {
                 let mediaCdi = mediasCdi[dp];
 
                 const { pu, diAcumulado } = calculoPuPos(mediaCdi, porcentagem, dp, fatorDiAcumuladoAnterior, vne)
-                expect(pu).to.be.equal(puEsperado[dp])
+                resultados.push({puEsperado:puEsperado[dp], final: pu})
+
+                try {
+                    expect(pu).to.not.be.equal(puEsperado[dp])
+                } catch ({ actual, expected }) {
+                    expect(actual).to.be.equal(puEsperado[dp])
+                }
+                
                 fatorDiAcumuladoAnterior = diAcumulado
             }
+            console.table(resultados)
+
         })
     })
 

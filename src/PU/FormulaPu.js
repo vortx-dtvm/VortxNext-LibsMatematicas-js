@@ -18,7 +18,7 @@ function calculoPuPos(mediaCdi, porcentagem, dp, fatorDiAcumuladoAnterior, vne) 
     const diAcumuladoFloor = floorFigure((fatorDiAcumuladoAnterior * diFloorFigure), 14)
     const jurosFloor = floorFigure((diAcumuladoFloor * spreadFloorFigure), 14)
     const puFloorFigure = floorFigure((vne * jurosFloor), 10)
-
+    
     return {
         toFixed: {
             spread: Number(spreadToFixed),
@@ -47,17 +47,17 @@ function calculoPuPos(mediaCdi, porcentagem, dp, fatorDiAcumuladoAnterior, vne) 
 function calculoFatorDi(mediaCdi) {
     const umPorDoisCincoDois = (1 / 252)
     const mediaCdiPorCem = ((mediaCdi / 100) + 1)
-    const pu = Math.pow(mediaCdiPorCem, umPorDoisCincoDois)
+    const fatorDI = Math.pow(mediaCdiPorCem, umPorDoisCincoDois)
 
-    return pu
+    return fatorDI
 }
 
 function calculoFatorSpread(porcentagem, dp) {
     const dpPorDoisCincoDois = (dp / 252)
     const porcentagemMaisUm = (1 + porcentagem)
-    const pu = Math.pow(porcentagemMaisUm, dpPorDoisCincoDois)
+    const fatorSpread = Math.pow(porcentagemMaisUm, dpPorDoisCincoDois)
 
-    return pu
+    return fatorSpread
 }
 function calculoPuPre(vne, porcentagem, dp) {
     const dpPorDoisCincoDois = (dp / 252)

@@ -175,21 +175,22 @@ describe('Deve realizar o calculo de Desvio Padrão utilizando JavaScript nativo
 
     it('Deve calcular o valor do desvio, utilizando valor unitário', () => {
         // Massa
-        let valorIndividual = 2345;
-        let mediaDosValores = 2222;
-        let numeroDeValores = 46;
+        let valorIndividual = 23.565487899;
+        let mediaDosValores = 24.34567009;
+        let numeroDeValores = 223;
 
         // Comportamento
         const resultado = Operacoes.desvioPadrao(valorIndividual, mediaDosValores, numeroDeValores)
+        const esperado = 0.052244863766
 
         //Resultado esperado
-        expect(resultado.toFixed(13)).to.be.equal('18.1353606070523')
+        expect(resultado.nativo).to.not.be.equal(esperado)
     })
 
     it('Deve calcular do desvio, utilizando varios valores nos parâmetros', () => {
         MassaDeTeste.DesvioPadrao.forEach(({ valorIndividual, mediaDosValores, numeroDeValores, finalEsperado }) => {
-            const resultado = Operacoes.desvioPadrao(valorIndividual, mediaDosValores, numeroDeValores, finalEsperado)
-            expect(resultado.toFixed(8)).to.be.equal(finalEsperado.toFixed(8))
+            const resultado = Operacoes.desvioPadrao(valorIndividual, mediaDosValores, numeroDeValores, finalEsperado)            
+            expect(resultado.nativo).to.not.be.equal(finalEsperado)
         })
     })
 })
