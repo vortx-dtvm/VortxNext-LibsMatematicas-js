@@ -4,7 +4,7 @@
   "description": "Tests folder for as-big implementation on PU",
   "main": "index.js",
   "scripts": {
-    "test": "node tests ",
+    "test": "asp --verbose --summary",
     "start": "npm run asbuild:untouched && npm run test --inspect --debug",
     "asbuild:untouched": "asc assembly/index.ts -b build/untouched.wasm -t build/untouched.wat --sourceMap --debug --measure",
     "asbuild:optimized": "asc assembly/index.ts --target release --sourceMap",
@@ -14,12 +14,14 @@
   "license": "ISC",
   "dependencies": {
     "@assemblyscript/loader": "^0.19.17",
-    "as-big": "^0.1.5",
-    "chai": "^4.3.4",
-    "mocha": "^9.1.2"
+    "as-big": "^0.1.5"
   },
   "devDependencies": {
+    "@as-pect/cli": "^6.2.4",
     "@assemblyscript/node": "github:AssemblyScript/node",
-    "assemblyscript": "^0.19.17"
+    "assemblyscript": "^0.19.17",
+    "micromatch": "^4.0.4",
+    "mocha": "^9.1.2",
+    "yaml": "^1.10.2"
   }
 }
