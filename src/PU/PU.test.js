@@ -5,7 +5,8 @@ const libs = [
     { nome: 'Nativo', lib: require('./FormulaPu') },
     { nome: 'Big', lib: require('./FormulaPuBig') },
     { nome: 'Decimal', lib: require('./FormulaPuDecimal') },
-    { nome: 'MathJS', lib: require('./FormulaPuMath') }
+    { nome: 'MathJS', lib: require('./FormulaPuMath') },
+    { nome: 'As-big', lib: require('../as-Big') }
 ]
 
 describe('Deve realizar o calculo do PU PÔS FIXADO', () => {
@@ -122,7 +123,7 @@ describe('Deve realizar o calculo do PU PÔS FIXADO', () => {
     })
 })
 
-describe('Deve realizar o calculo do PU PRE FIXADO', () => {
+describe.only('Deve realizar o calculo do PU PRE FIXADO', () => {
 
     describe('Deve realizar o calculo simples de PU', () => {
         let start
