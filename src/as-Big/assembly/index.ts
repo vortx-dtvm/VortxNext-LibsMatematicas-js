@@ -1,3 +1,3 @@
-import {calculoPuPre, calculoPuPos} from './Pu'
+import {calculoPuPre, calculoPuPos, calculoFatorDi} from './Pu'
 
-export {calculoPuPre, calculoPuPos }
+export {calculoPuPre, calculoPuPos, calculoFatorDi }
