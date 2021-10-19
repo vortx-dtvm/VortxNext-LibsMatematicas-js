@@ -123,7 +123,7 @@ describe('Deve realizar o calculo do PU PÔS FIXADO', () => {
     })
 })
 
-describe.only('Deve realizar o calculo do PU PRE FIXADO', () => {
+describe('Deve realizar o calculo do PU PRE FIXADO', () => {
 
     describe('Deve realizar o calculo simples de PU', () => {
         let start
